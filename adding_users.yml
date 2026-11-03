@@ -1,0 +1,20 @@
+---
+  
+- hosts: web_servers
+  become: true
+  tasks: 
+  
+  - name: create Simone user and Gabriela. 
+    tags: always 
+    user: 
+      name: Simone
+      groups: root  
+ 
+  - name: adding ssh key for Simone.
+    tags: always
+    authorized_key:
+      user: Simone
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHDCOqcdcLIOiWL0lPNgOWyuLt2VjCCb8Q/vzV9GMng6 ansible" 
+
+
+  
