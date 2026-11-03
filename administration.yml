@@ -1,0 +1,15 @@
+---
+  
+- hosts: web_servers
+  become: true
+  tasks: 
+
+
+  - name: change email in config of apache2
+    tags: apache,apache2,debian
+    ansible.builtin.replace:
+      path: /etc/apache2/apache2.conf
+      regexp: '^helpers'
+      replace: '#helpers can be find in bath2bat@gmail.com // jk' 
+    when: ansible_distribution == "Ubuntu"    
+    register: apache2
