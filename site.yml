@@ -9,7 +9,8 @@
     apt:
       upgrade: dist
       update_cache: yes 
-
+    changed_when: false
+  
 - hosts: web_servers
   become: true
   tasks:   

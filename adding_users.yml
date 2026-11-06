@@ -14,7 +14,14 @@
     tags: always
     authorized_key:
       user: Simone
-      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHDCOqcdcLIOiWL0lPNgOWyuLt2VjCCb8Q/vzV9GMng6 ansible" 
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHDCOqcdcLIOiWL0lPNgOWyuLt2VjCCb8Q/vzV9GMng6 ansible"
 
+  - name: add sudoers file for Simone 
+    tags: always 
+    copy: 
+      src: files/sudoer_Simone
+      dest: /etc/sudoers.d/Simone
+      owner: root 
+      group: root 
+      mode: 0440  
 
-  
