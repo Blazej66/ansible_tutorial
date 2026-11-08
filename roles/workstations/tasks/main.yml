@@ -1,0 +1,8 @@
+- name: install Terraform  
+  unarchive:
+      src: https://releases.hashicorp.com/terraform/1.17.0/terraform_1.17.0_lin>
+      dest: /usr/local/bin
+      remote_src: yes
+      mode: 0755
+      owner: root
+      group: root
