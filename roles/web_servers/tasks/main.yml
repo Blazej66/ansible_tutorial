@@ -1,15 +1,15 @@
-- name: install apache
-  tags: apache,apache2,ubuntu
-  apt:
+- name: install apache and php packages
+  tags: apache,apache2,ubuntu, php
+  package:
     name:
-      - apache2
-      - php
+      - "{{ apache_package_name }}"
+      - "{{ php_package_name }}"
     state: latest
 
 - name: start apache2 (Ubuntu)
   tags: apache,ubuntu,httpd
   service:
-    name: apache2
+    name: "{{ apache_service }}"
     state: started
     enabled: yes
   when: ansible_distribution == "Ubuntu"
@@ -22,3 +22,12 @@
     owner: root
     group: root
      
+- name: change email in config of apache2
+  tags: apache,apache2,debian
+  ansible.builtin.replace:
+    path: /etc/apache2/apache2.conf
+    regexp: '^helpers'
+    replace: '#helpers can be find in bath2bat@gmail.net // jk'
+  when: ansible_distribution == "Ubuntu"
+  notify: restart_apache
+
